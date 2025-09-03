@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wong.question.user.mapper.UserAnswerLogMapper">
+
+    <resultMap id="BaseResultMap" type="com.wong.question.user.entity.UserAnswerLogEntity">
+            <id property="id" column="id" jdbcType="INTEGER"/>
+            <result property="userId" column="user_id" jdbcType="INTEGER"/>
+            <result property="userName" column="user_name" jdbcType="VARCHAR"/>
+            <result property="subjectId" column="subject_id" jdbcType="INTEGER"/>
+            <result property="subjectCorrectAnswer" column="subject_correct_answer" jdbcType="VARCHAR"/>
+            <result property="userAnswer" column="user_answer" jdbcType="VARCHAR"/>
+            <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+            <result property="correct" column="correct" jdbcType="BIT"/>
+            <result property="sessionId" column="session_id" jdbcType="VARCHAR"/>
+            <result property="points" column="points" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,user_id,user_name,
+        subject_id,subject_correct_answer,user_answer,
+        create_time,correct,session_id,
+        points
+    </sql>
+    <select id="getSumAllBySessionId" resultType="java.lang.Integer">
+        SELECT SUM(points) FROM user_answer_log WHERE session_id = #{sessionId} AND user_id = #{userId}
+    </select>
+    <select id="getAllBySubjectId" resultType="com.wong.question.user.entity.UserAnswerLogEntity">
+        select <include refid="Base_Column_List"/> from user_answer_log where subject_id = #{subjectId}
+    </select>
+    <select id="getAllSumByUserId" resultType="com.wong.question.user.entity.UserAnswerLogEntity">
+        SELECT <include refid="Base_Column_List"/>, SUM(points) as sum FROM user_answer_log WHERE 1 GROUP BY user_name ORDER BY sum
+    </select>
+    <select id="getAll" resultType="com.wong.question.user.entity.UserAnswerLogEntity">
+        SELECT *, SUM(points) as sum FROM user_answer_log WHERE 1 GROUP BY user_name ORDER BY sum DESC
+    </select>
+</mapper>

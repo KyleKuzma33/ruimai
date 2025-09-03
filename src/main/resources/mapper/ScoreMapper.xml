@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wong.question.user.mapper.ScoreMapper">
+
+    <resultMap id="BaseResultMap" type="com.wong.question.user.entity.ScoreEntity">
+            <id property="id" column="id" jdbcType="INTEGER"/>
+            <result property="sessionId" column="session_id" jdbcType="VARCHAR"/>
+            <result property="score" column="score" jdbcType="VARCHAR"/>
+            <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+            <result property="userId" column="user_id" jdbcType="INTEGER"/>
+            <result property="userName" column="user_name" jdbcType="VARCHAR"/>
+            <result property="subNum" column="sub_num" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,session_id,score,
+        create_time,user_id,user_name,sub_num
+    </sql>
+    <select id="getScoreAll" resultType="com.wong.question.user.entity.ScoreEntity">
+        SELECT id, user_id, user_name, session_id, SUM(score) as score FROM score GROUP BY user_name, session_id
+    </select>
+</mapper>

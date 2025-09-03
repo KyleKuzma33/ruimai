@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wong.question.user.mapper.SubjectAnswerMapper">
+
+    <resultMap id="BaseResultMap" type="com.wong.question.user.entity.SubjectAnswerEntity">
+            <id property="id" column="id" jdbcType="INTEGER"/>
+            <result property="subjectId" column="subject_id" jdbcType="INTEGER"/>
+            <result property="answerNumber" column="answer_number" jdbcType="VARCHAR"/>
+            <result property="answerBody" column="answer_body" jdbcType="VARCHAR"/>
+            <result property="correctAnswer" column="correct_answer" jdbcType="BIT"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,subject_id,answer_number,
+        answer_body,correct_answer
+    </sql>
+    <select id="getListById" resultType="com.wong.question.user.entity.SubjectAnswerEntity">
+        SELECT * FROM subject_answer WHERE subject_id IN
+        <foreach collection="ids" item="id" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </select>
+</mapper>

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wong.question.user.mapper.SubjectMapper">
+
+    <resultMap id="BaseResultMap" type="com.wong.question.user.entity.SubjectEntity">
+            <id property="id" column="id" jdbcType="INTEGER"/>
+            <result property="type" column="type" jdbcType="INTEGER"/>
+            <result property="subjectLabel" column="subject_label" jdbcType="VARCHAR"/>
+            <result property="level" column="level" jdbcType="VARCHAR"/>
+            <result property="body" column="body" jdbcType="VARCHAR"/>
+            <result property="correctAnswer" column="correct_answer" jdbcType="VARCHAR"/>
+            <result property="sort" column="sort" jdbcType="INTEGER"/>
+            <result property="second" column="second" jdbcType="INTEGER"/>
+            <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+            <result property="delFlag" column="del_flag" jdbcType="BIT"/>
+    </resultMap>
+
+    <resultMap id="subjectAnswerMap" type="com.wong.question.user.entity.SubjectEntity">
+        <id property="id" column="id" jdbcType="INTEGER"/>
+        <result property="type" column="type" jdbcType="INTEGER"/>
+        <result property="subjectLabel" column="subject_label" jdbcType="VARCHAR"/>
+        <result property="level" column="level" jdbcType="VARCHAR"/>
+        <result property="body" column="body" jdbcType="VARCHAR"/>
+        <result property="correctAnswer" column="correct_answer" jdbcType="VARCHAR"/>
+        <result property="sort" column="sort" jdbcType="INTEGER"/>
+        <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+        <result property="delFlag" column="del_flag" jdbcType="BIT"/>
+
+        <collection property="subjectAnswerEntityList" ofType="com.wong.question.user.entity.SubjectAnswerEntity">
+            <id property="id" column="id" jdbcType="INTEGER"/>
+            <result property="subjectId" column="subject_id" jdbcType="INTEGER"/>
+            <result property="answerNumber" column="answer_number" jdbcType="VARCHAR"/>
+            <result property="answerBody" column="answer_body" jdbcType="VARCHAR"/>
+        </collection>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,type,subject_label,
+        level,body,correct_answer,
+        sort,create_time,del_flag,second
+    </sql>
+
+    <select id="getSubjectById" resultMap="subjectAnswerMap">
+        select s.*,a.* from subject s LEFT JOIN subject_answer a ON a.subject_id = s.id
+        where s.id = #{id}
+    </select>
+
+    <select id="getSubjectList" resultMap="BaseResultMap">
+        select <include refid="Base_Column_List"/> from subject where 1
+    </select>
+
+</mapper>

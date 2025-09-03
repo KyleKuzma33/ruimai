@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wong.question.user.mapper.RmXtConfigMapper">
+
+    <resultMap id="BaseResultMap" type="com.wong.question.user.entity.RmXtConfigEntity">
+            <id property="id" column="id" />
+            <result property="primaryService" column="primary_service" />
+            <result property="intermediateService" column="intermediate_service" />
+            <result property="seniorSenior" column="senior_senior" />
+            <result property="primaryBenefitsOne" column="primary_benefits_one" />
+            <result property="intermediateBenefitsOne" column="intermediate_benefits_one" />
+            <result property="seniorBenefitsOne" column="senior_benefits_one" />
+            <result property="primaryBenefitsTwo" column="primary_benefits_two" />
+            <result property="intermediateBenefitsTwo" column="intermediate_benefits_two" />
+            <result property="seniorBenefitsTwo" column="senior_benefits_two" />
+            <result property="extensionOne" column="extension_one" />
+            <result property="extensionTwo" column="extension_two" />
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,primary_service,intermediate_service,senior_senior,primary_benefits_one,intermediate_benefits_one,
+        senior_benefits_one,primary_benefits_two,intermediate_benefits_two,senior_benefits_two,extension_one,
+        extension_two
+    </sql>
+</mapper>

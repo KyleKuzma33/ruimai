@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wong.question.user.mapper.UserContractMapper">
+
+    <resultMap id="BaseResultMap" type="com.wong.question.user.entity.UserContractEntity">
+            <id property="id" column="id" />
+            <result property="userId" column="user_id" />
+            <result property="contractId" column="contract_id" />
+            <result property="signedTime" column="signed_time" />
+            <result property="status" column="status" />
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,user_id,contract_id,signed_time,status
+    </sql>
+</mapper>

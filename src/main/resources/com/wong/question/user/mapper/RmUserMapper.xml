@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wong.question.user.mapper.RmUserMapper">
+
+    <resultMap id="BaseResultMap" type="com.wong.question.user.entity.RmUserEntity">
+            <id property="id" column="id" />
+            <result property="userId" column="user_id" />
+            <result property="userOpenid" column="user_openid" />
+            <result property="userName" column="user_name" />
+            <result property="userPwd" column="user_pwd" />
+            <result property="userPhone" column="user_phone" />
+            <result property="isSupplier" column="is_supplier" />
+            <result property="inviteUserId" column="invite_user_id" />
+            <result property="userStatus" column="user_status" />
+            <result property="shopBenefits" column="shop_benefits" />
+            <result property="promotionBenefits" column="promotion_benefits" />
+            <result property="creationTime" column="creation_time" />
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,user_id,user_openid,user_name,user_pwd,user_phone,
+        is_supplier,invite_user_id,user_status,shop_benefits,promotion_benefits,
+        creation_time
+    </sql>
+</mapper>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wong.question.user.mapper.RmUserBenefitSummaryMapper">
+
+    <resultMap id="BaseResultMap" type="com.wong.question.user.entity.RmUserBenefitSummaryEntity">
+            <id property="id" column="id" />
+            <result property="userId" column="user_id" />
+            <result property="totalBenefit" column="total_benefit" />
+            <result property="level1Benefit" column="level1_benefit" />
+            <result property="level2Benefit" column="level2_benefit" />
+            <result property="withdrawableBalance" column="withdrawable_balance" />
+            <result property="frozenBalance" column="frozen_balance" />
+            <result property="createTime" column="create_time" />
+            <result property="updateTime" column="update_time" />
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,user_id,total_benefit,level1_benefit,level2_benefit,withdrawable_balance,
+        frozen_balance,create_time,update_time
+    </sql>
+</mapper>

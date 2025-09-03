@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wong.question.user.mapper.RmCarouselChartMapper">
+
+    <resultMap id="BaseResultMap" type="com.wong.question.user.entity.RmCarouselChartEntity">
+            <id property="id" column="id" />
+            <result property="carouselChartId" column="carousel_chart_id" />
+            <result property="carouselChartTitle" column="carousel_chart_title" />
+            <result property="carouselChartImg" column="carousel_chart_img" />
+            <result property="carouselChartSort" column="carousel_chart_sort" />
+            <result property="carouselStatus" column="carousel_status" />
+            <result property="creationTime" column="creation_time" />
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,carousel_chart_id,carousel_chart_title,carousel_chart_img,carousel_chart_sort,carousel_status,
+        creation_time
+    </sql>
+</mapper>

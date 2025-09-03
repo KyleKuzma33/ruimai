@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wong.question.user.mapper.RmBenefitsMapper">
+
+    <resultMap id="BaseResultMap" type="com.wong.question.user.entity.RmBenefitsEntity">
+            <id property="id" column="id" />
+            <result property="benefitsId" column="benefits_id" />
+            <result property="userId" column="user_id" />
+            <result property="benefitsUserId" column="benefits_user_id" />
+            <result property="benefitsType" column="benefits_type" />
+            <result property="creationTime" column="creation_time" />
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,benefits_id,user_id,benefits_user_id,benefits_type,creation_time
+    </sql>
+
+</mapper>

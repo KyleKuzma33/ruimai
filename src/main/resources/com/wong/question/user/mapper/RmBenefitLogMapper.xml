@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wong.question.user.mapper.RmBenefitLogMapper">
+
+    <resultMap id="BaseResultMap" type="com.wong.question.user.entity.RmBenefitLogEntity">
+            <id property="id" column="id" />
+            <result property="orderId" column="order_id" />
+            <result property="fromUserId" column="from_user_id" />
+            <result property="benefitUserId" column="benefit_user_id" />
+            <result property="level" column="level" />
+            <result property="amount" column="amount" />
+            <result property="status" column="status" />
+            <result property="createTime" column="create_time" />
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,order_id,from_user_id,benefit_user_id,level,amount,
+        status,create_time
+    </sql>
+    <select id="queryBenefitLogPage"
+            resultType="com.wong.question.user.entity.dto.RmBenefitsLogDTO">
+        SELECT
+        b.id,
+        b.order_id,
+        b.from_user_id,
+        fu.user_name AS from_user_name,
+        fu.user_phone AS from_user_phone,
+        b.benefit_user_id,
+        bu.user_name AS benefit_user_name,
+        bu.user_phone AS benefit_user_phone,
+        b.level,
+        b.amount,
+        b.status,
+        b.create_time
+        FROM rm_benefit_log b
+        LEFT JOIN rm_user fu ON b.from_user_id = fu.user_id
+        LEFT JOIN rm_user bu ON b.benefit_user_id = bu.user_id
+        <where>
+            <if test="status != null">
+                AND b.status = #{status}
+            </if>
+            <if test="fromUserName != null and fromUserName != ''">
+                AND fu.user_name LIKE CONCAT('%', #{fromUserName}, '%')
+            </if>
+            <if test="benefitUserName != null and benefitUserName != ''">
+                AND bu.user_name LIKE CONCAT('%', #{benefitUserName}, '%')
+            </if>
+        </where>
+        ORDER BY b.create_time DESC
+    </select>
+
+</mapper>
